@@ -1,11 +1,10 @@
 function initializeGraveEvents() {
-  const wind = new Audio("../Sounds/dark-wind-19785.mp3");
-  const heartbeat = new Audio("../Sounds/heartbeat-sound-effect-111218.mp3");
-  const dirt = new Audio("../Sounds/digging-with-shovel-63069.mp3");
-  const crack = new Audio("../Sounds/footsteps-on-ice-chunks-22940.mp3");
+  const wind = new Audio("Sounds/dark-wind-19785.mp3");
+  const heartbeat = new Audio("Sounds/heartbeat-sound-effect-111218.mp3");
+  const dirt = new Audio("Sounds/digging-with-shovel-63069.mp3");
+  const crack = new Audio("Sounds/footsteps-on-ice-chunks-22940.mp3");
   const graveSound = document.getElementById("graveSound");
 
-  // إعداد الصوت
   wind.loop = true;
   wind.volume = 1.0;
   heartbeat.volume = 1.0;
@@ -24,15 +23,19 @@ function initializeGraveEvents() {
     setTimeout(() => {
       heartbeat.pause();
       heartbeat.currentTime = 0;
-
       wind.play().catch(console.warn);
     }, 3000);
   };
 
-  document.body.addEventListener("click", startAudio, { once: true });
-  document.body.addEventListener("touchstart", startAudio, { once: true });
+  const allowInteraction = () => {
+    startAudio();
+    window.removeEventListener("click", allowInteraction);
+    window.removeEventListener("touchstart", allowInteraction);
+  };
 
-  // صوت الحفر عند مرور الماوس
+  window.addEventListener("click", allowInteraction);
+  window.addEventListener("touchstart", allowInteraction);
+
   document.querySelectorAll(".grave-3d").forEach((grave) => {
     grave.addEventListener("mouseenter", () => {
       dirt.pause();
@@ -45,7 +48,6 @@ function initializeGraveEvents() {
     });
   });
 
-  // صوت الكسر عند مرور الماوس على RIP
   document.querySelectorAll(".rip").forEach((rip) => {
     rip.addEventListener("mouseenter", () => {
       crack.pause();
@@ -58,7 +60,6 @@ function initializeGraveEvents() {
     });
   });
 
-  // ✅ التمرير التلقائي
   setTimeout(() => {
     let autoScroll = setInterval(() => {
       if (
@@ -72,7 +73,6 @@ function initializeGraveEvents() {
     }, 20);
   }, 3000);
 
-  // ✅ ملاحظة ظهور القبور وتشغيل صوت
   const observer = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
@@ -89,7 +89,6 @@ function initializeGraveEvents() {
     observer.observe(grave);
   });
 
-  // ✅ فتح المودال عند الضغط على القبر
   document.querySelectorAll(".grave-3d").forEach((grave) => {
     grave.addEventListener("click", () => {
       const title = grave.querySelector(".grave-title").textContent;
@@ -108,16 +107,17 @@ function openGraveModal(title, text) {
   document.getElementById("modal-text").innerHTML = text;
   document.getElementById("grave-modal").classList.remove("hidden");
 }
+
 window.addEventListener("DOMContentLoaded", () => {
   Promise.all([
-    fetch("../grave.json")
+    fetch("grave.json") // ✅ بدون ../
       .then((res) => {
         if (!res.ok) throw new Error("فشل تحميل ملف القبور");
         return res.json();
       })
       .catch((err) => {
         console.warn("grave.json غير موجود أو فيه مشكلة:", err.message);
-        return []; // لو الملف مش موجود هنكمل بالباقي
+        return [];
       }),
     Promise.resolve(JSON.parse(localStorage.getItem("graves") || "[]")),
   ])
