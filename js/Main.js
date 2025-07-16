@@ -1,8 +1,8 @@
 window.addEventListener("DOMContentLoaded", () => {
-  const wind = new Audio("../Sounds/dark-wind-19785.mp3");
-  const heartbeat = new Audio("../Sounds/heartbeat-sound-effect-111218.mp3");
-  const dirt = new Audio("../Sounds/digging-with-shovel-63069.mp3");
-  const crack = new Audio("../Sounds/footsteps-on-ice-chunks-22940.mp3");
+  const wind = new Audio("Sounds/dark-wind-19785.mp3");
+  const heartbeat = new Audio("Sounds/heartbeat-sound-effect-111218.mp3");
+  const dirt = new Audio("Sounds/digging-with-shovel-63069.mp3");
+  const crack = new Audio("Sounds/footsteps-on-ice-chunks-22940.mp3");
 
   // إعداد الصوت
   wind.loop = true;
@@ -39,11 +39,18 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 3000);
   };
 
-  // ✅ لازم المستخدم يضغط في أي مكان لأول مرة
-  document.body.addEventListener("click", startAudio, { once: true });
-  document.body.addEventListener("touchstart", startAudio, { once: true });
+  // ✅ السماح بالتفاعل مرة واحدة فقط بعد تحميل الصفحة بالكامل
+  const allowInteraction = () => {
+    console.log("🖱️ تم التفاعل - بدء تشغيل الصوت");
+    startAudio();
+    window.removeEventListener("click", allowInteraction);
+    window.removeEventListener("touchstart", allowInteraction);
+  };
 
-  // صوت الحفر
+  window.addEventListener("click", allowInteraction);
+  window.addEventListener("touchstart", allowInteraction);
+
+  // 🎧 صوت الحفر
   document.querySelectorAll(".grave-3d").forEach((grave) => {
     grave.addEventListener("mouseenter", () => {
       if (!dirt.paused) dirt.pause();
@@ -59,7 +66,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // صوت الكسر
+  // 🎧 صوت الكسر
   document.querySelectorAll(".rip").forEach((rip) => {
     rip.addEventListener("mouseenter", () => {
       if (!crack.paused) crack.pause();
