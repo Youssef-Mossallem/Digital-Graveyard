@@ -1,0 +1,382 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: black;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+.text {
+  text-align: center;
+  margin: 10px 0 15px 0;
+}
+
+.text .title {
+  font-size: 100px;
+  color: #5f0101;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 0, 0, 0.5);
+  animation: pulse 3s infinite ease-in-out;
+}
+.blood-drip {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 40px; /* عشان فيه دم */
+}
+
+.blood-drip::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 6px;
+  height: 40px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(255, 0, 0, 0.8) 0%, rgba(100, 0, 0, 0.9) 90%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: blood-drip 2.5s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes blood-drip {
+  0% {
+    height: 0px;
+    opacity: 0;
+    transform: translateX(-50%) scaleY(0.5);
+  }
+  30% {
+    height: 25px;
+    opacity: 1;
+    transform: translateX(-50%) scaleY(1);
+  }
+  60% {
+    height: 40px;
+    opacity: 1;
+    transform: translateX(-50%) scaleY(1.1);
+  }
+  100% {
+    height: 0px;
+    opacity: 0;
+    transform: translateX(-50%) scaleY(0.4);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 0, 0, 0.5);
+  }
+  50% {
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 0, 0, 0.7);
+  }
+}
+
+.text p {
+    font-size: 28px;
+    color: #bcbcbc;
+    max-width: 900px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+  padding: 0 20px;
+  line-height: 1.8;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.05), 0 0 20px rgba(255, 0, 0, 0.02);
+  transition: all 0.4s ease-in-out;
+}
+.Enter {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 220px;
+  margin: 20px auto;
+  border: none;
+  border-radius: 40px;
+  background: linear-gradient(145deg, #7e0000, #4a0000);
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow:
+    0 0 25px rgba(255, 0, 0, 0.4),
+    0 0 15px rgba(255, 0, 0, 0.3),
+    inset 0 0 10px rgba(255, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  animation: enter-glow 3s infinite ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+
+.Enter a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.Enter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 40px;
+  background: rgba(255, 0, 0, 0.08);
+  filter: blur(10px);
+  z-index: 0;
+}
+
+.Enter:hover {
+  background: linear-gradient(145deg, #a00000, #5e0000);
+  transform: scale(1.07);
+  box-shadow:
+    0 0 40px rgba(255, 0, 0, 0.6),
+    0 0 20px rgba(255, 0, 0, 0.4),
+    inset 0 0 12px rgba(255, 255, 255, 0.06);
+}
+
+@keyframes enter-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 25px rgba(255, 0, 0, 0.4),
+      0 0 15px rgba(255, 0, 0, 0.3),
+      inset 0 0 10px rgba(255, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 35px rgba(255, 0, 0, 0.6),
+      0 0 25px rgba(255, 0, 0, 0.4),
+      inset 0 0 12px rgba(255, 255, 255, 0.15);
+  }
+}
+
+.grave-3d {
+  width: 180px;
+  height: 250px;
+  background: linear-gradient(145deg, #1d1d1d, #0b0b0b);
+  border-top-left-radius: 90px;
+  border-top-right-radius: 90px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 60px rgba(150, 0, 0, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95),
+    inset 0 6px 16px rgba(255, 255, 255, 0.03),
+    inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(255, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  position: relative;
+  text-align: center;
+  transform: perspective(800px) rotateX(10deg);
+  transition: all 0.4s ease;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  will-change: transform, opacity;
+}
+
+.grave-3d:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.grave-3d:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.grave-3d:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.grave-3d:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: perspective(800px) rotateX(20deg);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(800px) rotateX(10deg);
+  }
+}
+
+.grave-3d:hover {
+  transform: perspective(800px) rotateX(5deg) scale(1.03);
+  box-shadow: 0 0 80px rgba(255, 0, 0, 0.6), 0 20px 40px rgba(0, 0, 0, 0.95),
+    inset 0 6px 16px rgba(255, 255, 255, 0.05),
+    inset 0 -14px 24px rgba(0, 0, 0, 0.7);
+}
+
+.grave-3d::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 14px;
+  background: rgba(0, 0, 0, 0.6);
+  filter: blur(8px);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.grave-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 0.7rem;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.35);
+}
+
+.engraved-text {
+  height: 90px;
+  width: 170px;
+  font-size: 0.9rem;
+  color: #f0f0f0;
+  text-shadow: 0 0 4px rgba(255, 0, 0, 0.2), 0 0 8px rgba(0, 0, 0, 0.5);
+  line-height: 1.4;
+}
+
+.rip {
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+  margin-top: 1rem;
+}
+
+.grave-3d.passion .rip       { color: #cc0000; }  /* الشغف */
+.grave-3d.friendship .rip    { color: #003366; }  /* الصداقة */
+.grave-3d.focus .rip         { color: #660099; }  /* التركيز */
+.grave-3d.project .rip       { color: #996633; }  /* المشروع */
+.grave-3d.dreams .rip        { color: #3366cc; }  /* الأحلام */
+.grave-3d.memory .rip        { color: #999999; }  /* الذكرى */
+.grave-3d.time .rip          { color: #009999; }  /* الوقت */
+.grave-3d.energy .rip        { color: #ff6600; }  /* الطاقة */
+.grave-3d.ambition .rip      { color: #cc3399; }  /* الطموح */
+.grave-3d.regret .rip        { color: #444444; }  /* الندم */
+.grave-3d.love .rip          { color: #990000; }  /* الحب */
+.grave-3d.innocence .rip     { color: #6699cc; }  /* البراءة */
+.grave-3d.silence .rip       { color: #cccccc; }  /* الصمت */
+.grave-3d.conflict .rip      { color: #b30000; }  /* الصراع */
+.grave-3d.ego .rip           { color: #a67c52; }  /* الأنا */
+.grave-3d.peace .rip         { color: #66cc99; }  /* السلام */
+.grave-3d.doubt .rip         { color: #996699; }  /* الشك */
+.grave-3d.truth .rip         { color: #003300; }  /* الحقيقة */
+.grave-3d.lies .rip          { color: #660000; }  /* الأكاذيب */
+.grave-3d.addiction .rip     { color: #330033; }  /* الإدمان */
+.grave-3d.envy .rip          { color: #006600; }  /* الحسد */
+.grave-3d.betrayal .rip      { color: #8b0000; }  /* الخيانة */
+.grave-3d.hope .rip          { color: #33cccc; }  /* الأمل */
+.grave-3d.isolation .rip     { color: #555555; }  /* العزلة */
+.grave-3d.routine .rip       { color: #888888; }  /* الروتين */
+.grave-3d.scroll .rip        { color: #6666ff; }  /* التمرير اللانهائي */
+.grave-3d.wish .rip          { color: #66ffff; }  /* الأمنية */
+.grave-3d.anger .rip         { color: #cc3300; }  /* الغضب */
+.grave-3d.fear .rip          { color: #333333; }  /* الخوف */
+.grave-3d.loneliness .rip    { color: #666666; }  /* الوحدة */
+.grave-3d.failure .rip       { color: #999933; }  /* الفشل */
+.grave-3d.noise .rip         { color: #9999cc; }  /* الضجيج */
+.grave-3d.attention .rip     { color: #ff3399; }  /* السعي للانتباه */
+.grave-3d.youth .rip         { color: #ffcc66; }  /* الشباب الضايع */
+.grave-3d.dignity .rip       { color: #333366; }  /* الكرامة */
+.grave-3d.curiosity .rip     { color: #0099ff; }  /* الفضول */
+.grave-3d.jealousy .rip      { color: #339966; }  /* الغيرة */
+.grave-3d.patience .rip      { color: #9999ff; }  /* الصبر */
+.grave-3d.wisdom .rip        { color: #4b0082; }  /* الحكمة */
+.grave-3d.freedom .rip       { color: #00ccff; }  /* الحرية */
+.grave-3d.identity .rip      { color: #6666cc; }  /* الهوية */
+.grave-3d.loneliness     { box-shadow: 0 0 60px rgba(102, 102, 153, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(102, 102, 153, 0.15); }
+.grave-3d.fear           { box-shadow: 0 0 60px rgba(153, 0, 51, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(153, 0, 51, 0.15); }
+.grave-3d.forgiveness    { box-shadow: 0 0 60px rgba(0, 153, 76, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(0, 153, 76, 0.15); }
+.grave-3d.loyalty        { box-shadow: 0 0 60px rgba(0, 102, 204, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(0, 102, 204, 0.15); }
+.grave-3d.anger          { box-shadow: 0 0 60px rgba(204, 0, 0, 0.6), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(204, 0, 0, 0.2); }
+.grave-3d.peace          { box-shadow: 0 0 60px rgba(102, 204, 255, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(102, 204, 255, 0.15); }
+.grave-3d.curiosity      { box-shadow: 0 0 60px rgba(255, 204, 0, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(255, 204, 0, 0.15); }
+.grave-3d.depression     { box-shadow: 0 0 60px rgba(51, 51, 102, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(51, 51, 102, 0.15); }
+.grave-3d.childhood      { box-shadow: 0 0 60px rgba(255, 153, 102, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(255, 153, 102, 0.15); }
+.grave-3d.laziness       { box-shadow: 0 0 60px rgba(128, 128, 128, 0.4), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(128, 128, 128, 0.15); }
+.grave-3d.ego            { box-shadow: 0 0 60px rgba(255, 0, 255, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(255, 0, 255, 0.15); }
+.grave-3d.doubt          { box-shadow: 0 0 60px rgba(102, 153, 153, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(102, 153, 153, 0.15); }
+.grave-3d.sacrifice      { box-shadow: 0 0 60px rgba(255, 80, 80, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(255, 80, 80, 0.15); }
+.grave-3d.envy           { box-shadow: 0 0 60px rgba(51, 153, 51, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(51, 153, 51, 0.15); }
+.grave-3d.patience       { box-shadow: 0 0 60px rgba(102, 178, 255, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(102, 178, 255, 0.15); }
+.grave-3d.truth          { box-shadow: 0 0 60px rgba(255, 255, 102, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(255, 255, 102, 0.15); }
+.grave-3d.lies           { box-shadow: 0 0 60px rgba(204, 102, 102, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(204, 102, 102, 0.15); }
+.grave-3d.envy           { box-shadow: 0 0 60px rgba(102, 204, 102, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(102, 204, 102, 0.15); }
+.grave-3d.knowledge      { box-shadow: 0 0 60px rgba(0, 128, 255, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(0, 128, 255, 0.15); }
+.grave-3d.passion       { box-shadow: 0 0 60px rgba(204, 0, 0, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(255, 0, 0, 0.15); }
+.grave-3d.friendship    { box-shadow: 0 0 60px rgba(0, 51, 102, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(0, 51, 102, 0.15); }
+.grave-3d.focus         { box-shadow: 0 0 60px rgba(102, 0, 153, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(102, 0, 153, 0.15); }
+.grave-3d.project       { box-shadow: 0 0 60px rgba(153, 102, 51, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(153, 102, 51, 0.15); }
+.grave-3d.dreams        { box-shadow: 0 0 60px rgba(51, 102, 204, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(51, 102, 204, 0.15); }
+.grave-3d.memory        { box-shadow: 0 0 60px rgba(153, 153, 153, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(153, 153, 153, 0.15); }
+.grave-3d.time          { box-shadow: 0 0 60px rgba(0, 153, 153, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(0, 153, 153, 0.15); }
+.grave-3d.energy        { box-shadow: 0 0 60px rgba(255, 102, 0, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(255, 102, 0, 0.15); }
+.grave-3d.ambition      { box-shadow: 0 0 60px rgba(204, 51, 153, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(204, 51, 153, 0.15); }
+.grave-3d.regret        { box-shadow: 0 0 60px rgba(68, 68, 68, 0.5), 0 20px 40px rgba(0, 0, 0, 0.95), inset 0 6px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 24px rgba(0, 0, 0, 0.7), inset 0 0 4px rgba(68, 68, 68, 0.15); }
+/* كمل بنفس الباترون دا لحد ما توصل لـ 40 نوع */
+.grave-3d.dream .rip       { color: #3366cc; }  /* زي .dreams */
+.grave-3d.emotion .rip     { color: #ff6699; }  /* مشاعر مكبوتة */
+.grave-3d.potential .rip   { color: #3399ff; }  /* إمكانيات مهدورة */
+.grave-3d.kindness .rip    { color: #66cc66; }  /* اللطف المنسي */
+.grave-3d.respect .rip     { color: #333366; }  /* الكرامة (بديل dignity) */
+
+
+
+
+.grave-3d.passion .crack {
+  transform: rotate(-15deg);
+  height: 50px;
+}
+.grave-3d.friendship .crack {
+  transform: rotate(-30deg);
+  height: 40px;
+}
+.grave-3d.focus .crack {
+  transform: rotate(-10deg);
+  height: 55px;
+}
+.grave-3d.project .crack {
+  transform: rotate(-20deg);
+  height: 45px;
+}
+
+.base {
+  position: absolute;
+  bottom: -20px;
+  width: 155px;
+  height: 30px;
+  background: linear-gradient(to top, #1a1a1a, #0d0d0d);
+  border-radius: 8px;
+  box-shadow: inset 0 4px 8px rgba(255, 0, 0, 0.05);
+  z-index: -2;
+}
+
+@media (max-width: 768px) {
+  .text .title {
+    font-size: 60px;
+  }
+  .grave-3d {
+    width: 150px;
+    height: 220px;
+  }
+  .engraved-text {
+    font-size: 0.85rem;
+    width: 140px;
+  }
+  .base {
+    width: 130px;
+    height: 25px;
+  }
+}

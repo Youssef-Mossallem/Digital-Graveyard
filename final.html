@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Final</title>
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/final.css">
+</head>
+<body>
+  <div class="ash"></div>
+
+  <main class="mirror-wrapper tilt-me" id="mirrorWrapper">
+    <div class="mirror-frame">
+      <div class="mirror-surface relative">
+        <!-- optional camera reflection -->
+        <div id="mirrorVideoContainer" class="hidden">
+          <video id="mirrorVideo" autoplay playsinline muted></video>
+        </div>
+
+        <!-- Main Content -->
+        <h1 class="mirror-quote font-black fade-in-up">
+          <span class="legend-word">وجهك الحقيقي</span> موجود هنا...
+        </h1>
+        <p class="mirror-sub mt-6 text-gray-300 fade-in-up delay-1">كل دقيقة دفنتها في اللاشيء، دَفنت معـها <span class="legend-word">نسخةً أعظم</span> منك.</p>
+        <h2 class="mirror-tag mt-10 text-red-500 font-bold fade-in-up delay-2">لسه تقدر تُبعث الهمم.</h2>
+
+        <!-- CTA Buttons -->
+        <div class="mt-14 flex flex-col sm:flex-row gap-4 justify-center items-center fade-in-up delay-2">
+          <a href="graveyard.html" class="grave-btn px-8 py-3 rounded-xl border border-red-600 bg-red-900/30 hover:bg-red-800/50 text-lg font-bold text-red-300 hover:text-white">كمِّل الدفن</a>
+          <a href="https://www.youtube.com/watch?v=D34KyceGhPE&utm_source=chatgpt.com" class="grave-btn px-8 py-3 rounded-xl border border-gray-500 bg-gray-800/40 hover:bg-gray-700/60 text-lg font-bold text-gray-200 hover:text-white">ابدأ صفحة جديدة</a>
+        </div>
+
+        <!-- Reflection -->
+        <div class="reflection-wrapper">
+          <div class="reflection-text w-full text-center p-4">
+            <h1 class="mirror-quote font-black opacity-100">وجهك الحقيقي موجود هنا...</h1>
+          </div>
+          <div class="reflection-fade"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== Scripts ===== -->
+  <script>
+    /* Hover tilt effect */
+    (function(){
+      const el = document.getElementById('mirrorWrapper');
+      const strength = 10; // deg
+      function handleMove(e){
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width;  // 0..1
+        const y = (e.clientY - r.top) / r.height; // 0..1
+        const rotY = (x - 0.5) * strength * 2; // left/right
+        const rotX = (0.5 - y) * strength * 2; // up/down
+        el.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+      }
+      function reset(){el.style.transform='rotateX(0deg) rotateY(0deg)';}
+      el.addEventListener('mousemove',handleMove);
+      el.addEventListener('mouseleave',reset);
+    })();
+
+    /* Try camera mirror (optional; fails gracefully) */
+    (async function(){
+      const container = document.getElementById('mirrorVideoContainer');
+      const video = document.getElementById('mirrorVideo');
+      if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)return; // no cam
+      try{
+        const stream = await navigator.mediaDevices.getUserMedia({video:true,audio:false});
+        video.srcObject = stream;
+        container.classList.remove('hidden');
+      }catch(err){/* ignore */}
+    })();
+  </script>
+</body>
+</html>

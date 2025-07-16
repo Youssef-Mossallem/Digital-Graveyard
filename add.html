@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Your Grave</title>
+    <link rel="stylesheet" href="css/add.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <h1>أضف قبرًا جديدًا</h1>
+
+    <form id="add-grave-form">
+      <label for="grave-title">عنوان القبر:</label>
+      <input
+        type="text"
+        id="grave-title"
+        name="title"
+        placeholder="مثال: مشروع قديم، إدمان ألعاب..."
+        required
+        style="height: 70px; margin-top: 15px;"
+      />
+
+      <label for="engraved-text">النص المنقوش:</label>
+      <textarea
+        id="engraved-text"
+        name="text"
+        rows="4"
+        placeholder="ما الذي دفنته هنا؟"
+        required
+        style="height: 150px; margin-top: 15px;"
+      ></textarea>
+
+      <label for="grave-type">اختر نوع القبر:</label>
+      <select
+        id="grave-type"
+        name="type"
+        required
+        style="height: 70px; margin-top: 15px; margin-bottom: 15px;"
+      >
+        <option value="">-- اختر نوع الدفن --</option>
+        <option value="passion">الشغف</option>
+        <option value="friendship">الصداقة</option>
+        <option value="focus">التركيز</option>
+        <option value="project">المشروع</option>
+        <option value="dreams">الأحلام</option>
+        <option value="memory">الذكرى</option>
+        <option value="time">الوقت</option>
+        <option value="energy">الطاقة</option>
+        <option value="ambition">الطموح</option>
+        <option value="regret">الندم</option>
+        <option value="love">الحب</option>
+        <option value="innocence">البراءة</option>
+        <option value="silence">الصمت</option>
+        <option value="conflict">الصراع</option>
+        <option value="ego">الأنا</option>
+        <option value="peace">السلام</option>
+        <option value="doubt">الشك</option>
+        <option value="truth">الحقيقة</option>
+        <option value="lies">الأكاذيب</option>
+        <option value="addiction">الإدمان</option>
+        <option value="envy">الحسد</option>
+        <option value="betrayal">الخيانة</option>
+        <option value="hope">الأمل</option>
+        <option value="isolation">العزلة</option>
+        <option value="routine">الروتين</option>
+        <option value="scroll">التمرير اللانهائي</option>
+        <option value="wish">الأمنية</option>
+        <option value="anger">الغضب</option>
+        <option value="fear">الخوف</option>
+        <option value="loneliness">الوحدة</option>
+        <option value="failure">الفشل</option>
+        <option value="noise">الضجيج</option>
+        <option value="attention">السعي للانتباه</option>
+        <option value="youth">الشباب الضايع</option>
+        <option value="dignity">الكرامة</option>
+        <option value="curiosity">الفضول</option>
+        <option value="jealousy">الغيرة</option>
+        <option value="patience">الصبر</option>
+        <option value="wisdom">الحكمة</option>
+        <option value="freedom">الحرية</option>
+        <option value="identity">الهوية</option>
+        <option value="forgiveness">الغفران</option>
+        <option value="loyalty">الولاء</option>
+        <option value="depression">الاكتئاب</option>
+        <option value="childhood">الطفولة</option>
+        <option value="laziness">الكسل</option>
+        <option value="sacrifice">التضحية</option>
+        <option value="emotion">المشاعر المكبوتة</option>
+        <option value="potential">الإمكانيات المهدورة</option>
+        <option value="kindness">اللطف المنسي</option>
+        <option value="respect">الاحترام</option>
+        <option value="knowledge">المعرفة</option>
+      </select>
+
+      <button type="submit" class="submit-btn">💀 أضف القبر 💀</button>
+    </form>
+    <script src="js/add.js"></script>
+  </body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>كم ضيعت من عمرك؟</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        background: radial-gradient(circle at center, #0f0f0f, #000000);
+        color: #eee;
+        font-family: "Cairo", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 40px 20px;
+      }
+
+      h1 {
+        color: #ff0040;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px #ff004088;
+        text-align: center;
+      }
+
+      .calculator {
+        background: #111;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(255, 0, 64, 0.3);
+        width: 100%;
+        max-width: 600px;
+      }
+
+      label {
+        display: block;
+        margin-top: 20px;
+        font-size: 1.2rem;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        font-size: 1.1rem;
+        border-radius: 10px;
+        border: none;
+        margin-top: 5px;
+        background: #222;
+        color: #fff;
+      }
+
+      button {
+        margin-top: 25px;
+        width: 100%;
+        padding: 14px;
+        font-size: 1.2rem;
+        background: #ff0040;
+        border: none;
+        border-radius: 12px;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #ff3366;
+      }
+
+      .result {
+        margin-top: 30px;
+        background: #1a1a1a;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: inset 0 0 12px #ff004022;
+        font-size: 1rem;
+        white-space: pre-wrap;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background: #222;
+        color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #333;
+        text-align: center;
+      }
+
+      th {
+        background: #ff0040;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>حاسبة العمر اللي ضاع</h1>
+    <div class="calculator">
+      <label for="dailyHours">بتضيع كام ساعة يوميًا؟</label>
+      <input type="number" id="dailyHours" min="0" max="24" placeholder="مثال: 4" />
+
+      <label for="years">بقالك كام سنة على الروتين ده؟</label>
+      <input type="number" id="years" min="0" placeholder="مثال: 2" />
+
+      <label for="fieldType">اختر المجال اللي تحب تشوف كنت ممكن تخلص إيه فيه:</label>
+      <select id="fieldType">
+        <option value="الكل">كل التخصصات</option>
+        <option value="برمجة">برمجة</option>
+        <option value="تصميم">تصميم</option>
+        <option value="أمن سيبراني">أمن سيبراني</option>
+        <option value="ذكاء اصطناعي">ذكاء اصطناعي</option>
+        <option value="بيانات">بيانات</option>
+        <option value="لغات">لغات</option>
+        <option value="تسويق">تسويق</option>
+        <option value="صوت">صوت</option>
+        <option value="فريلانس">فريلانس</option>
+        <option value="كتابة">كتابة</option>
+        <option value="كوتشنج">كوتشنج</option>
+        <option value="صحة ولياقة">صحة ولياقة</option>
+        <option value="تعليم ذاتي">تعليم ذاتي</option>
+        <option value="إدارة">إدارة</option>
+        <option value="صناعة المحتوى">صناعة المحتوى</option>
+        <option value="روبوتات">روبوتات</option>
+        <option value="ترفيه">ترفيه</option>
+        <option value="استثمار">استثمار</option>
+      </select>
+
+      <button onclick="calculateWaste()">احسب وشوف كان زمانك فين</button>
+      <div class="result" id="result"></div>
+    </div>
+
+    <script src="js/calculate.js"></script>
+  </body>
+</html>
